@@ -110,14 +110,48 @@ const signaturePreview = document.getElementById('signature-preview');
 const copyBtn = document.getElementById('copy-btn');
 const toast = document.getElementById('toast');
 
+// Función para formatear el número de teléfono colombiano (+57) XXX XXX XXXX (máximo 10 dígitos)
+function formatPhoneNumber(val) {
+  if (!val) return '(+57) ';
+  let digits = val.replace(/\D/g, '');
+  
+  // Si comienza con 57 y viene del prefijo (+57) o tiene más de 10 dígitos
+  if (digits.startsWith('57') && (digits.length > 10 || val.includes('(+57)'))) {
+    digits = digits.slice(2);
+  }
+  
+  // Limitar a un máximo de 10 dígitos numéricos para celulares
+  digits = digits.slice(0, 10);
+  
+  if (digits.length === 0) {
+    return '(+57) ';
+  }
+  
+  let formatted = '(+57)';
+  if (digits.length > 0) {
+    formatted += ' ' + digits.slice(0, 3);
+  }
+  if (digits.length > 3) {
+    formatted += ' ' + digits.slice(3, 6);
+  }
+  if (digits.length > 6) {
+    formatted += ' ' + digits.slice(6, 10);
+  }
+  
+  return formatted;
+}
+
 // Función principal para actualizar la vista previa
 function updatePreview() {
+  const rawDigits = inputPhone.value ? inputPhone.value.replace(/\D/g, '').replace(/^57/, '') : '';
+  const phoneVal = rawDigits.length > 0 ? formatPhoneNumber(inputPhone.value) : '(+57) 313 549 4365';
+
   const data = {
     name: inputName.value || 'Tu Nombre',
     role: inputRole.value || 'Tu Cargo',
     department: inputDepartment.value || 'Tu Departamento',
     email: inputEmail.value || 'correo@ticline.co',
-    phone: inputPhone.value || '(+57) 000 000 0000'
+    phone: phoneVal
   };
 
   signaturePreview.innerHTML = generateSignatureHTML(data);
@@ -128,7 +162,11 @@ inputName.addEventListener('input', updatePreview);
 inputRole.addEventListener('input', updatePreview);
 inputDepartment.addEventListener('input', updatePreview);
 inputEmail.addEventListener('input', updatePreview);
-inputPhone.addEventListener('input', updatePreview);
+
+inputPhone.addEventListener('input', () => {
+  inputPhone.value = formatPhoneNumber(inputPhone.value);
+  updatePreview();
+});
 
 // Función para copiar la firma al portapapeles
 function copySignature() {
