@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generador de Firmas | TICLINE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="generador.css">
+</head>
+
+<body>
+  <div class="app-container">
+    <div class="glass-panel form-section">
+      <div class="header">
+        <h1>Generador de Firmas</h1>
+        <p>Completa tus datos para generar tu firma de correo corporativa.</p>
+      </div>
+
+      <form id="signature-form">
+        <div class="input-group">
+          <label for="input-name">Nombre Completo</label>
+          <input type="text" id="input-name" placeholder="Ej. Laura Elena Aristizábal Millán" required>
+        </div>
+
+        <div class="input-group">
+          <label for="input-role">Cargo</label>
+          <input type="text" id="input-role" placeholder="Ej. Ingeniera de Desarrollo de Negocios Senior" required>
+        </div>
+
+        <div class="input-group">
+          <label for="input-department">Departamento</label>
+          <input type="text" id="input-department" placeholder="Ej. Dirección de Desarrollo de Negocios" required>
+        </div>
+
+        <div class="input-group">
+          <label for="input-email">Correo Electrónico</label>
+          <input type="email" id="input-email" placeholder="laura.aristizabal@ticline.co" required>
+        </div>
+
+        <div class="input-group">
+          <label for="input-phone">Teléfono / Celular</label>
+          <input type="text" id="input-phone" placeholder="(+57) 313 549 4365" required>
+
+        </div>
+      </form>
+    </div>
+
+    <div class="glass-panel preview-section">
+      <div class="preview-header">
+        <h2>Vista Previa</h2>
+        <button id="copy-btn" class="btn-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          Copiar Firma
+        </button>
+      </div>
+
+      <div class="preview-container">
+        <!-- La firma se inyectará aquí dinámicamente -->
+        <div id="signature-preview"></div>
+      </div>
+
+      <div id="toast" class="toast hidden">
+        ¡Firma copiada con éxito!
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="generador.js"></script>
+</body>
+
+</html>
