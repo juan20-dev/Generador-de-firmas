@@ -1,0 +1,8 @@
+{
+  "name": "Generador de Firmas",
+  "description": "Generador de firmas de correo corporativas para TICLINE",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
