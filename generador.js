@@ -43,20 +43,46 @@ function generateSignatureHTML(data) {
                     <strong>${data.role}</strong><br>
                     ${data.department}
                   </span>
-                  <p style="padding: 0px; margin: 5px 0px 0px 0px; font-family: Tahoma, Arial, Gotham, Helvetica, sans-serif; font-size: 8.5pt; line-height: 150%; color: #2E2E2E; text-align: left;">
-                    <img src="${urls.MAIL}" width="11" height="11" alt="Image" style="width: 11px; height: 11px; max-width: 11px; border: none; display: inline-block; vertical-align: middle;" border="0"> &nbsp;<a href="mailto:${data.email}" style="text-decoration: none; color: #2E2E2E;">${data.email}</a><br>
-                    <img src="${urls.LOCATION}" width="11" height="11" alt="Image" style="width: 11px; height: 11px; max-width: 11px; border: none; display: inline-block; vertical-align: middle;" border="0"> &nbsp;<a href="${data.addressLink}" style="color: #2E2E2E; text-decoration: none !important;">${data.address}</a><br>
-                    <img src="${urls.PHONE}" width="11" height="11" alt="Image" style="width: 11px; height: 11px; max-width: 11px; border: none; display: inline-block; vertical-align: middle;" border="0"> &nbsp;<a href="tel:${phoneClean}" style="color: #2E2E2E; text-decoration: none !important;">${data.phone}</a><br>
-                  </p>
-                  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <table border="0" cellspacing="0" cellpadding="0" style="margin-top: 6px;">
                     <tbody>
                       <tr>
-                        <td width="50%" style="font-family: Tahoma, Arial, Gotham, Helvetica, sans-serif; font-size: 8.5pt; line-height: 150%; color: #2E2E2E; text-align: left;">
-                          <img src="${urls.WEB}" width="11" height="11" alt="Image" style="width: 11px; height: 11px; max-width: 11px; border: none; display: inline-block; vertical-align: middle;" border="0"> &nbsp;<a href="https://www.ticline.co/" target="new" style="text-decoration: none; color: #21409A;">www.ticline.co</a>
+                        <td width="14" valign="middle" align="center" style="width: 14px; min-width: 14px; line-height: 0px; padding-bottom: 3px;">
+                          <img src="${urls.MAIL}" width="11" height="11" alt="Mail" border="0" style="width: 11px; height: 11px; max-width: 11px; border: none; display: block;">
                         </td>
-                        <td style="line-height: 0px;">
+                        <td width="6" style="width: 6px; font-size: 1px; line-height: 1px;"></td>
+                        <td valign="middle" colspan="2" style="font-family: Tahoma, Arial, Gotham, Helvetica, sans-serif; font-size: 8.5pt; color: #2E2E2E; padding-bottom: 3px; white-space: nowrap;">
+                          <a href="mailto:${data.email}" style="text-decoration: none; color: #2E2E2E;">${data.email}</a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td width="14" valign="middle" align="center" style="width: 14px; min-width: 14px; line-height: 0px; padding-bottom: 3px;">
+                          <img src="${urls.LOCATION}" width="11" height="11" alt="Location" border="0" style="width: 11px; height: 11px; max-width: 11px; border: none; display: block;">
+                        </td>
+                        <td width="6" style="width: 6px; font-size: 1px; line-height: 1px;"></td>
+                        <td valign="middle" colspan="2" style="font-family: Tahoma, Arial, Gotham, Helvetica, sans-serif; font-size: 8.5pt; color: #2E2E2E; padding-bottom: 3px; white-space: nowrap;">
+                          <a href="${data.addressLink}" style="color: #2E2E2E; text-decoration: none !important;">${data.address}</a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td width="14" valign="middle" align="center" style="width: 14px; min-width: 14px; line-height: 0px; padding-bottom: 3px;">
+                          <img src="${urls.PHONE}" width="11" height="11" alt="Phone" border="0" style="width: 11px; height: 11px; max-width: 11px; border: none; display: block;">
+                        </td>
+                        <td width="6" style="width: 6px; font-size: 1px; line-height: 1px;"></td>
+                        <td valign="middle" colspan="2" style="font-family: Tahoma, Arial, Gotham, Helvetica, sans-serif; font-size: 8.5pt; color: #2E2E2E; padding-bottom: 3px; white-space: nowrap;">
+                          <a href="tel:${phoneClean}" style="color: #2E2E2E; text-decoration: none !important;">${data.phone}</a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td width="14" valign="middle" align="center" style="width: 14px; min-width: 14px; line-height: 0px;">
+                          <img src="${urls.WEB}" width="11" height="11" alt="Web" border="0" style="width: 11px; height: 11px; max-width: 11px; border: none; display: block;">
+                        </td>
+                        <td width="6" style="width: 6px; font-size: 1px; line-height: 1px;"></td>
+                        <td valign="middle" style="font-family: Tahoma, Arial, Gotham, Helvetica, sans-serif; font-size: 8.5pt; color: #21409A; padding-right: 12px; white-space: nowrap;">
+                          <a href="https://www.ticline.co/" target="_blank" style="text-decoration: none; color: #21409A;">www.ticline.co</a>
+                        </td>
+                        <td valign="middle" align="left" style="line-height: 0px;">
                           <a href="https://www.linkedin.com/company/ticline-co/" target="_blank">
-                            <img src="${urls.linkedin}" alt="" width="50" height="13" style="width: 50px; height: 13px; max-width: 50px; border: none; display: inline-block;" border="0">
+                            <img src="${urls.linkedin}" alt="LinkedIn" width="50" height="13" border="0" style="width: 50px; height: 13px; max-width: 50px; border: none; display: block;">
                           </a>
                         </td>
                       </tr>
@@ -123,6 +149,23 @@ function formatCapitalizedName(val) {
   return val.toLowerCase().replace(/(?:^|\s|-|\.)\S/g, (char) => char.toUpperCase());
 }
 
+// Función para formatear el cargo (palabras con mayúscula inicial, conectores en minúscula)
+function formatRole(val) {
+  if (!val) return '';
+  const connectors = new Set(['de', 'del', 'la', 'las', 'los', 'el', 'y', 'e', 'o', 'u', 'en', 'con', 'sin', 'por', 'para', 'a']);
+  let isFirstWord = true;
+
+  return val.replace(/(\S+)/g, (word) => {
+    const lower = word.toLowerCase();
+    if (!isFirstWord && connectors.has(lower)) {
+      isFirstWord = false;
+      return lower;
+    }
+    isFirstWord = false;
+    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+  });
+}
+
 // Función para formatear el número de teléfono colombiano (+57) XXX XXX XXXX (máximo 10 dígitos)
 function formatPhoneNumber(val) {
   if (!val) return '(+57) ';
@@ -170,17 +213,17 @@ function updatePreview() {
       link: 'https://maps.google.com/?q=Cl.+20+%23+6+-+30+Oficina+804+Pereira'
     },
     'Medellín': {
-      address: 'Cl. 29 # 41 - 105 Oficina 1103 Medellín ',
+      address: 'Cl. 29 # 41 - 105 Oficina 1103 Medellín',
       link: 'https://www.google.com/maps/place/TICLINE/@6.2266076,-75.567809,15z/data=!4m2!3m1!1s0x0:0x27170f65cce96c2f?sa=X&ved=1t:2428&ictx=111'
     }
   };
 
-  const selectedCity = inputCity ? inputCity.value : 'Medellín ';
+  const selectedCity = inputCity ? inputCity.value.trim() : 'Medellín';
   const cityInfo = cityAddresses[selectedCity] || cityAddresses['Medellín'];
 
   const data = {
     name: formatCapitalizedName(inputName.value) || 'Tu Nombre',
-    role: inputRole.value || 'Tu Cargo',
+    role: formatRole(inputRole.value) || 'Tu Cargo',
     department: inputDepartment.value || 'Tu Departamento',
     email: inputEmail.value || 'correo@ticline.co',
     phone: phoneDisplay,
@@ -204,7 +247,15 @@ inputName.addEventListener('input', () => {
 if (inputCity) {
   inputCity.addEventListener('change', updatePreview);
 }
-inputRole.addEventListener('input', updatePreview);
+inputRole.addEventListener('input', () => {
+  const start = inputRole.selectionStart;
+  const end = inputRole.selectionEnd;
+  inputRole.value = formatRole(inputRole.value);
+  if (start !== null && end !== null) {
+    inputRole.setSelectionRange(start, end);
+  }
+  updatePreview();
+});
 inputDepartment.addEventListener('change', updatePreview);
 inputDepartment.addEventListener('input', updatePreview);
 inputEmail.addEventListener('input', updatePreview);
