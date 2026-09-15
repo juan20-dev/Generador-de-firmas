@@ -29,13 +29,27 @@
         </div>
 
         <div class="input-group">
+          <label for="input-city">Ciudad</label>
+          <select id="input-city" required>
+            <option value="Medellín" selected>Medellín</option>
+            <option value="Pereira">Pereira</option>
+          </select>
+        </div>
+
+        <div class="input-group">
           <label for="input-role">Cargo</label>
           <input type="text" id="input-role" placeholder="Ej. Ingeniera de Desarrollo de Negocios Senior" required>
         </div>
 
         <div class="input-group">
           <label for="input-department">Departamento</label>
-          <input type="text" id="input-department" placeholder="Ej. Dirección de Desarrollo de Negocios" required>
+          <select id="input-department" required>
+            <option value="" disabled selected>Selecciona un departamento</option>
+            <option value="Dirección Administrativa y Financiera">Dirección Administrativa y Financiera</option>
+            <option value="Dirección de Proyectos">Dirección de Proyectos</option>
+            <option value="Dirección de Desarrollo de Negocios">Dirección de Desarrollo de Negocios</option>
+            <option value="Dirección de Servicios">Dirección de Servicios</option>
+          </select>
         </div>
 
         <div class="input-group">

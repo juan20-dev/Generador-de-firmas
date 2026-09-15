@@ -21,8 +21,8 @@ function generateSignatureHTML(data) {
 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-family: Tahoma, Arial, Gotham, Helvetica, sans-serif;">
   <tbody>
     <tr>
-      <td style="font-size: 11pt; color: #21409A; padding-bottom: 8px;">
-        <strong>Cordialmente,</strong>
+      <td style="font-size: 11pt; color: #000000; font-weight: bold; padding-bottom: 8px;">
+        <strong style="font-weight: bold; color: #000000;">Cordialmente,</strong>
       </td>
     </tr>
     <tr>
@@ -45,7 +45,7 @@ function generateSignatureHTML(data) {
                   </span>
                   <p style="padding: 0px; margin: 5px 0px 0px 0px; font-family: Tahoma, Arial, Gotham, Helvetica, sans-serif; font-size: 8.5pt; line-height: 150%; color: #2E2E2E; text-align: left;">
                     <img src="${urls.MAIL}" width="11" height="11" alt="Image" style="width: 11px; height: 11px; max-width: 11px; border: none; display: inline-block; vertical-align: middle;" border="0"> &nbsp;<a href="mailto:${data.email}" style="text-decoration: none; color: #2E2E2E;">${data.email}</a><br>
-                    <img src="${urls.LOCATION}" width="11" height="11" alt="Image" style="width: 11px; height: 11px; max-width: 11px; border: none; display: inline-block; vertical-align: middle;" border="0"> &nbsp;<a href="https://www.google.com/maps/place/TICLINE/@6.2266076,-75.567809,15z/data=!4m2!3m1!1s0x0:0x27170f65cce96c2f?sa=X&ved=1t:2428&ictx=111" style="color: #2E2E2E; text-decoration: none !important;">Cl. 29 # 41 - 105 Oficina 1103 Medellín</a><br>
+                    <img src="${urls.LOCATION}" width="11" height="11" alt="Image" style="width: 11px; height: 11px; max-width: 11px; border: none; display: inline-block; vertical-align: middle;" border="0"> &nbsp;<a href="${data.addressLink}" style="color: #2E2E2E; text-decoration: none !important;">${data.address}</a><br>
                     <img src="${urls.PHONE}" width="11" height="11" alt="Image" style="width: 11px; height: 11px; max-width: 11px; border: none; display: inline-block; vertical-align: middle;" border="0"> &nbsp;<a href="tel:${phoneClean}" style="color: #2E2E2E; text-decoration: none !important;">${data.phone}</a><br>
                   </p>
                   <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -79,13 +79,13 @@ function generateSignatureHTML(data) {
             <tr>
               <td style="line-height: 0px; vertical-align: middle; width: 150px;" align="center">
                 <a target="_blank" href="https://www.ticline.co/">
-                  <img style="width: 150px; max-width: 150px; display: inline-block;" alt="ISO 14001" width="150" src="${urls.ISO_14001}">
+                  <img style="width: 150px; max-width: 150px; display: inline-block;" alt="ISO 9001" width="150" src="${urls.ISO_9001}">
                 </a>
               </td>
               <td style="font-size: 1px; line-height: 1px; border: none; width: 10px;"></td>
               <td style="line-height: 0px; vertical-align: middle; width: 150px;" align="center">
                 <a target="_blank" href="https://www.ticline.co/">
-                  <img style="width: 150px; max-width: 150px; display: inline-block;" alt="ISO 9001" width="150" src="${urls.ISO_9001}">
+                  <img style="width: 150px; max-width: 150px; display: inline-block;" alt="ISO 14001" width="150" src="${urls.ISO_14001}">
                 </a>
               </td>
               <td style="line-height: 1px; width: 15px;"></td>
@@ -104,6 +104,7 @@ function generateSignatureHTML(data) {
 
 // Variables del DOM
 const inputName = document.getElementById('input-name');
+const inputCity = document.getElementById('input-city');
 const inputRole = document.getElementById('input-role');
 const inputDepartment = document.getElementById('input-department');
 const inputEmail = document.getElementById('input-email');
@@ -115,6 +116,12 @@ const inputCorpPhone = document.getElementById('input-corp-phone');
 const signaturePreview = document.getElementById('signature-preview');
 const copyBtn = document.getElementById('copy-btn');
 const toast = document.getElementById('toast');
+
+// Función para formatear cada palabra con inicial mayúscula
+function formatCapitalizedName(val) {
+  if (!val) return '';
+  return val.toLowerCase().replace(/(?:^|\s|-|\.)\S/g, (char) => char.toUpperCase());
+}
 
 // Función para formatear el número de teléfono colombiano (+57) XXX XXX XXXX (máximo 10 dígitos)
 function formatPhoneNumber(val) {
@@ -157,20 +164,48 @@ function updatePreview() {
     phoneDisplay = rawCorpDigits.length > 0 ? formatPhoneNumber(inputCorpPhone.value) : '(+57) 313 549 4365';
   }
 
+  const cityAddresses = {
+    'Pereira': {
+      address: 'Cl. 20 # 6 - 30 Oficina 804 Pereira',
+      link: 'https://maps.google.com/?q=Cl.+20+%23+6+-+30+Oficina+804+Pereira'
+    },
+    'Medellín': {
+      address: 'Cl. 29 # 41 - 105 Oficina 1103 Medellín ',
+      link: 'https://www.google.com/maps/place/TICLINE/@6.2266076,-75.567809,15z/data=!4m2!3m1!1s0x0:0x27170f65cce96c2f?sa=X&ved=1t:2428&ictx=111'
+    }
+  };
+
+  const selectedCity = inputCity ? inputCity.value : 'Medellín ';
+  const cityInfo = cityAddresses[selectedCity] || cityAddresses['Medellín'];
+
   const data = {
-    name: inputName.value || 'Tu Nombre',
+    name: formatCapitalizedName(inputName.value) || 'Tu Nombre',
     role: inputRole.value || 'Tu Cargo',
     department: inputDepartment.value || 'Tu Departamento',
     email: inputEmail.value || 'correo@ticline.co',
-    phone: phoneDisplay
+    phone: phoneDisplay,
+    address: cityInfo.address,
+    addressLink: cityInfo.link
   };
 
   signaturePreview.innerHTML = generateSignatureHTML(data);
 }
 
 // Escuchar cambios en los inputs en tiempo real
-inputName.addEventListener('input', updatePreview);
+inputName.addEventListener('input', () => {
+  const start = inputName.selectionStart;
+  const end = inputName.selectionEnd;
+  inputName.value = formatCapitalizedName(inputName.value);
+  if (start !== null && end !== null) {
+    inputName.setSelectionRange(start, end);
+  }
+  updatePreview();
+});
+if (inputCity) {
+  inputCity.addEventListener('change', updatePreview);
+}
 inputRole.addEventListener('input', updatePreview);
+inputDepartment.addEventListener('change', updatePreview);
 inputDepartment.addEventListener('input', updatePreview);
 inputEmail.addEventListener('input', updatePreview);
 
